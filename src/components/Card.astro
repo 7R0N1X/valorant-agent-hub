@@ -1,0 +1,40 @@
+---
+// import "@fontsource-variable/oswald";
+import fetchAgents from "../api/agents.js";
+
+const agents = await fetchAgents;
+---
+
+{
+  agents.map((agent, index) => (
+    <div id={index} class={`min-w-[300px] max-w-[356px] max-h-[520px] flex flex-col container`} style={`background-image: radial-gradient(circle, #${agent.backgroundGradientColors[0][0]}, #${agent.backgroundGradientColors[0][1]})`}>
+      <div class="w-full h-[475px] relative">
+        <img src={agent.background} alt={`background-${agent.displayName}`} class={`w-full h-full object-cover absolute`} />
+        <img src={agent.bustPortrait} alt={`bust-portrait-${agent.displayName}`} class="w-full h-full object-cover absolute transition" id={`bustPortrait-${index}`} />
+      </div>
+      <p id={`displayName-${index}`} class="font-extrabold text-xl uppercase leading-6 py-3 px-4 py-auto bg-[#BCB9B4] transition-colors">{agent.displayName}</p>
+    </div>
+  ))
+}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const $container = document.querySelectorAll(".container")
+    
+    $container.forEach((card, index) => {
+      const $img = document.getElementById(`bustPortrait-${index}`)
+      const $displayName = document.getElementById(`displayName-${index}`)
+
+      card.addEventListener('mouseover', () => {
+        $img.classList.add("scale-110")
+        $displayName.classList.add("bg-transparent")
+      })
+
+      card.addEventListener('mouseout', () => {
+        $img.classList.remove("scale-110")
+        $displayName.classList.remove("bg-transparent")
+      })
+    })
+
+  })
+</script>

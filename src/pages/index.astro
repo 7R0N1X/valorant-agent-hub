@@ -1,7 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 ---
 
 <Layout title="Valorant Agent Hub">
-	<main></main>
+	<main class="max-w-screen-2xl mx-auto">
+		<h1 class="hidden">VALORANT</h1>
+		<img src="/valorant-logo.svg" alt="" class="h-10 my-10 mx-auto">
+		<section class="w-full flex flex-wrap justify-center gap-8">
+			<Card />
+		</section>
+		
+	</main>
 </Layout>
