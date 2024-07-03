@@ -7,7 +7,7 @@ const agents = await fetchAgents;
 
 {
   agents.map((agent, index) => (
-    <div id={index} class={`min-w-[300px] max-w-[356px] max-h-[520px] flex flex-col container`} style={`background-image: radial-gradient(circle, #${agent.backgroundGradientColors[0][0]}, #${agent.backgroundGradientColors[0][1]})`}>
+    <div id={index} class={`min-w-[300px] max-w-[356px] max-h-[520px] flex flex-col container overflow-hidden`} style={`background-image: radial-gradient(circle, #${agent.backgroundGradientColors[0][0]}, #${agent.backgroundGradientColors[0][1]})`}>
       <div class="w-full h-[475px] relative">
         <img src={agent.background} alt={`background-${agent.displayName}`} class={`w-full h-full object-cover absolute`} />
         <img src={agent.bustPortrait} alt={`bust-portrait-${agent.displayName}`} class="w-full h-full object-cover absolute transition" id={`bustPortrait-${index}`} />
