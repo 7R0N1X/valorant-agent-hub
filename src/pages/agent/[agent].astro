@@ -9,14 +9,12 @@ export async function getStaticPaths() {
   const data = await response.json();
 
   return data.data.map((agent) => ({
-    params: { agent: encodeURIComponent(agent.displayName) },
+    params: { agent: encodeURIComponent(agent.displayName.replace('/', '')) },
     props: {
       bustPortrait: agent.bustPortrait,
       agent: agent.displayName,
       description: agent.description,
       role: agent.role,
-      abilities: agent.abilities,
-      backgroundGradientColors: agent.backgroundGradientColors,
     },
   }));
 }
@@ -26,9 +24,9 @@ const {
   agent,
   description,
   role,
-  abilities,
-  backgroundGradientColors,
 } = Astro.props;
+
+const { displayName, displayIcon } = role
 
 export const prerender = true;
 ---
@@ -48,10 +46,10 @@ export const prerender = true;
       <div class="size-[130px] border border-[#FA4453] relative mt-4">
         <div class="box">
           <div class="absolute w-full h-full flex flex-col justify-center items-center gap-4">
-            <Image src={role.displayIcon} alt="" inferSize={true} class="size-8" />
+            <Image src={displayIcon} alt="" inferSize={true} class="size-8" />
             <div class="text-center">
               <p class="text-[10px] mb-1">ROLE</p>
-              <p class="text-[10px] uppercase text-[#FA4453]">{role.displayName}</p>
+              <p class="text-[10px] uppercase text-[#FA4453]">{displayName}</p>
             </div>
           </div>
         </div>
