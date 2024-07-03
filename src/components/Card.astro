@@ -1,5 +1,5 @@
 ---
-// import "@fontsource-variable/oswald";
+import "@fontsource-variable/oswald";
 import fetchAgents from "../api/agents.js";
 
 const agents = await fetchAgents;
@@ -16,6 +16,12 @@ const agents = await fetchAgents;
     </div>
   ))
 }
+
+<style>
+  p {
+    font-family: 'Oswald Variable', sans-serif;
+  }
+</style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
