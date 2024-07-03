@@ -13,7 +13,7 @@ const agents = await fetchAgents;
         <Image src={agent.background} alt={`background-${agent.displayName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute" />
         <Image src={agent.bustPortrait} alt={`bust-portrait-${agent.displayName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute transition" id={`bustPortrait-${index}`} />
       </div>
-      <p id={`displayName-${index}`} class="font-extrabold text-xl uppercase leading-6 py-3 px-4 py-auto bg-[#BCB9B4] transition-colors">{agent.displayName}</p>
+      <p id={`displayName-${index}`} class="font-extrabold text-xl uppercase leading-6 py-3 px-4 py-auto bg-white transition-colors">{agent.displayName}</p>
     </a>
   ))
 }
@@ -34,12 +34,15 @@ const agents = await fetchAgents;
 
       card.addEventListener('mouseover', () => {
         $img.classList.add("scale-110")
-        $displayName.classList.add("bg-transparent")
-      })
+        $displayName.classList.remove("bg-white")
+        $displayName.classList.add("text-white")
 
+      })
+      
       card.addEventListener('mouseout', () => {
         $img.classList.remove("scale-110")
-        $displayName.classList.remove("bg-transparent")
+        $displayName.classList.add("bg-white")
+        $displayName.classList.remove("text-white")
       })
     })
 
