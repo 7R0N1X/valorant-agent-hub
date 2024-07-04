@@ -3,11 +3,11 @@ import "@fontsource-variable/oswald";
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import particles from "../../../public/particles.svg"
-import fetchAgents from "../../api/agents.js";
+import { getAgents } from "../../services/agents.ts"
 
 
 export async function getStaticPaths() {
-  const agents = await fetchAgents;
+  const agents = await getAgents();
   
   return agents.map((agent) => ({
     params: { agent: encodeURIComponent(agent.displayName.replace('/', '').toLowerCase()) },
