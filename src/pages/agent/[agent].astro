@@ -1,14 +1,15 @@
 ---
 import "@fontsource-variable/oswald";
 import Layout from "../../layouts/Layout.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import particles from "../../../public/particles.svg"
+import fetchAgents from "../../api/agents.js";
+
 
 export async function getStaticPaths() {
-  const response = await fetch("https://valorant-api.com/v1/agents");
-  const data = await response.json();
-
-  return data.data.map((agent) => ({
+  const agents = await fetchAgents;
+  
+  return agents.map((agent) => ({
     params: { agent: encodeURIComponent(agent.displayName.replace('/', '').toLowerCase()) },
     props: {
       bustPortrait: agent.bustPortrait,
