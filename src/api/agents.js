@@ -8,15 +8,9 @@ const fetchAgents = axios({
     isPlayableCharacter: true
   }
 }).then((response) => {
-  agents = response.data.data.map((agent) => ({
-    displayName: agent.displayName,
-    bustPortrait: agent.bustPortrait,
-    background: agent.background,
-    backgroundGradientColors: [agent.backgroundGradientColors]
-  }))
-  return agents
+  return agents = response.data.data.map((agent) => agent)
 }).catch((err) => {
-  console.log(`Error: ${err}`)
+  throw err
 })
 
 export default fetchAgents
