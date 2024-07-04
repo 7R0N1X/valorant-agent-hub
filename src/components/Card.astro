@@ -8,7 +8,7 @@ const agents = await fetchAgents;
 
 {
   agents.map((agent, index) => (
-    <a href={`agent/${agent.displayName.replace('/', '').toLowerCase()}`} id={index} class={`min-w-[300px] max-w-[300px] max-h-[500px] flex flex-col container overflow-hidden`} style={`background-image: radial-gradient(circle, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]})`}>
+    <a href={`agent/${agent.displayName.replace('/', '').toLowerCase()}`} id={index} class={`max-sm:min-w-full max-w-[300px] max-h-[500px] flex flex-col container overflow-hidden`} style={`background-image: radial-gradient(circle, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]})`}>
       <div class="w-full h-[475px] relative">
         <Image src={agent.background} alt={`background-${agent.displayName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute" />
         <Image src={agent.bustPortrait} alt={`bust-portrait-${agent.displayName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute transition" id={`bustPortrait-${index}`} />
