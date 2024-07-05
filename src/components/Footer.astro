@@ -1,0 +1,31 @@
+---
+import '@fontsource-variable/inter';
+import { Image } from "astro:assets";
+import linkedinIcon from "../../public/icons/linkedin.svg"
+import githubIcon from "../../public/icons/github.svg"
+import instagramIcon from "../../public/icons/instagram.svg"
+import riotGamesIcon from "../../public/riot-games.svg"
+import valorantIcon from "../../public/valorant-logo-vers-2.svg"
+
+---
+
+<footer class="absolute left-0 w-full text-white bg-[#111111] text-center py-10 flex flex-col gap-2">
+  <div class="flex justify-center items-center gap-8 mb-2">
+    <a href="https://www.riotgames.com/es" target="_blank" rel="noopener noreferrer"><Image src={riotGamesIcon} alt="" class="h-10 w-auto" /></a>
+    <a href="https://playvalorant.com/es-es/" target="_blank" rel="noopener noreferrer"><Image src={valorantIcon} alt="" class="h-10 w-auto object-cover" /></a>
+  </div>
+  <p class="text-xs">Datos proporcionados por Riot Games.</p>
+  <p class="text-xs max-sm:px-2">Valorant y todas las propiedades asociadas son marcas comerciales o marcas registradas de Riot Games, Inc.</p>
+  <div class="flex justify-center items-center gap-3 mt-2">
+    <a href="https://www.linkedin.com/in/ing-eduardomolina" target="_blank" rel="noopener noreferrer" aria-label="Linkedin" class="bg-white/50 rounded hover:bg-white/70 transition-colors"><Image src={linkedinIcon} alt='Linkedin' class="size-7"/></a>
+    <a href="https://github.com/7R0N1X/valorant-agent-hub" target="_blank" rel="noopener noreferrer" aria-label="Github" class="bg-white/50 rounded hover:bg-white/70 transition-colors"><Image src={githubIcon} alt='Código fuente' class="size-7"/></a>
+    <a href="https://www.instagram.com/tronix.dev" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="bg-white/50 rounded hover:bg-white/70 transition-colors"><Image src={instagramIcon} alt='Instagram' class="size-7"/></a>
+  </div>
+  <p class="text-sm">Hecho con &hearts; por <a href="https://portfolio-weld-five-97.vercel.app" target="_blank" rel="noopener noreferrer" >7R0N1X</a></p>
+</footer>
+
+<style>
+  p {
+    font-family: 'Inter Variable', sans-serif;
+  }
+</style>
