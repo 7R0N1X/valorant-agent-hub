@@ -1,10 +1,10 @@
 ---
 import "@fontsource-variable/oswald";
+import '@fontsource-variable/inter';
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import particles from "../../../public/particles.svg"
 import { getAgents } from "../../services/agents.ts"
-
 
 export async function getStaticPaths() {
   const agents = await getAgents();
@@ -12,27 +12,22 @@ export async function getStaticPaths() {
   return agents.map((agent) => ({
     params: { agent: encodeURIComponent(agent.displayName.replace('/', '').toLowerCase()) },
     props: {
-      bustPortrait: agent.bustPortrait,
-      agent: agent.displayName,
-      description: agent.description,
-      role: agent.role,
+      agent
     },
-  }));
+  }));  
 }
 
-const {
-  bustPortrait,
-  agent,
-  description,
-  role,
-} = Astro.props;
+const { agent } = Astro.props;
 
-const { displayName, displayIcon } = role
+const { displayName: agentDisplayName, description: agentDescription, bustPortrait,
+  role: { displayName: roleDisplayName, displayIcon: roleDisplayIcon },
+  abilities
+ } = agent
 
 export const prerender = true;
 ---
 
-<Layout title={agent}>
+<Layout title={agentDisplayName}>
   <section class="w-full h-auto xl:relative">
 
     <div class="relative w-full h-72 xl:h-[700px]">
@@ -41,16 +36,16 @@ export const prerender = true;
     </div>
 
     <div class="text-white xl:absolute xl:top-0 xl:bottom-0 xl:flex xl:flex-col xl:justify-center">
-      <h1 class="text-6xl xl:text-[150px] uppercase italic font-bold my-4 tracking-tighter leading-none">{agent}</h1>
-      <p class="max-sm:text-sm font-medium uppercase description max-w-[700px]">{description}</p>
+      <h1 class="text-5xl xl:text-[150px] uppercase italic font-bold my-7 tracking-tighter leading-none">{agentDisplayName}</h1>
+      <p class="max-sm:text-sm font-medium description max-w-[700px]">{agentDescription}</p>
       
-      <div class="size-[130px] border border-[#FA4453] relative mt-4">
+      <div class="size-[130px] border border-[#FA4453] relative mt-7">
         <div class="box">
           <div class="absolute w-full h-full flex flex-col justify-center items-center gap-4">
-            <Image src={displayIcon} alt="" inferSize={true} class="size-8" />
+            <Image src={roleDisplayIcon} alt="" inferSize={true} class="size-8" />
             <div class="text-center">
               <p class="text-[10px] mb-1">ROLE</p>
-              <p class="text-[10px] uppercase text-[#FA4453]">{displayName}</p>
+              <p class="text-[10px] uppercase text-[#FA4453]">{roleDisplayName}</p>
             </div>
           </div>
         </div>
@@ -60,22 +55,95 @@ export const prerender = true;
     
   </section>
 
-  <style>
-    h1,
-    .description {
-      font-family: "Oswald Variable", sans-serif;
-    }
+  <hr class="border-[#FA4453] mt-10" />
 
-    .box::before {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      opacity: 0.7;
-      background-color: rgb(6, 10, 14);
-      inset: 0px;
-      width: 104px;
-      height: 104px;
-      margin: auto;
+  <section class="w-full flex max-sm:flex-col h-96 justify-center items-center">
+    <div class="sm:w-2/4 mx-auto">
+      <h2 class="text-white text-2xl xl:text-4xl  text-center font-semibold my-10 tracking-tighter leading-none">HABILIDADES ESPECIALES</h2>
+      <div class="w-full flex justify-center items-center gap-8 sm:gap-10 abilities">
+        {
+          abilities.filter((ability) => ability.slot !== "Passive").map((ability, index) => (
+            <a href="" id={index.toString()}><Image src={ability.displayIcon} alt={ability.slot} inferSize={true} class="size-11 xl:size-12 opacity-30" id={index.toString()} /></a>
+          ))
+        }
+      </div>
+    </div>
+    {
+      abilities && abilities.map((ability, index) => (
+        <div class="sm:w-2/4 mx-auto hidden container-ability h-full my-10 flex flex-col justify-center" id={index.toString()}>
+          <h3 class="text-white text-2xl xl:text-3xl text-center font-medium uppercase mb-4">{ability.displayName}</h3>
+          <p class="text-white text-sm lg:text-lg description font-normal">{ability.description}</p>
+        </div>
+      ))
     }
-  </style>
+  </section>
+
 </Layout>
+
+
+<style>
+  h1,
+  h2,
+  h3 {
+    font-family: "Oswald Variable", sans-serif;
+  }
+
+  .description{
+    font-family: 'Inter Variable', sans-serif;
+  }
+
+  .box::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    opacity: 0.7;
+    background-color: rgb(6, 10, 14);
+    inset: 0px;
+    width: 104px;
+    height: 104px;
+    margin: auto;
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const $abilitiesLinks = document.querySelectorAll(".abilities a")
+    const $abilitiesIcons = document.querySelectorAll(".abilities a img")
+    const $containerAbility = document.querySelectorAll(".container-ability")
+
+
+    // Resalta el icono de la primera habilidad
+    $abilitiesIcons.forEach((img) => {
+      if (img.id === "0") {
+        img.classList.remove("opacity-30") 
+      }
+    })
+
+    // Muestra la primera habilidad al cargar la página del agente
+    $containerAbility.forEach((container) => {
+      (container.id === "0") ? container.classList.remove("hidden") : null
+    })
+
+    // Controla el evento al dar click en uno de los iconos de las habilidades
+    $abilitiesLinks.forEach((link, index) => {
+
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        $containerAbility.forEach(container => {
+          if (container.id === index.toString()) {
+            container.classList.remove("hidden")
+            $abilitiesIcons.forEach(img => {
+              img.id === index.toString() ? img.classList.remove("opacity-30") : img.classList.add("opacity-30") 
+            })
+          }else{
+            container.classList.add("hidden")
+          }
+        })
+
+      })
+
+    })
+  })
+
+</script>
