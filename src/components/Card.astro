@@ -1,22 +1,27 @@
 ---
 import "@fontsource-variable/oswald";
 import { Image } from "astro:assets";
-import { getAgents } from "../services/agents.ts"
 
-const agents = await getAgents();
+interface Props {
+  href: string;
+  id: string;
+  color_1: string;
+  color_2: string;
+  background: string;
+  bustPortrait: string;
+  agentName: string;
+}
+
+const { href, id, color_1, color_2, background, bustPortrait, agentName } = Astro.props
 ---
 
-{
-  agents.map((agent, index) => (
-    <a href={`agent/${agent.displayName.replace('/', '').toLowerCase()}`} id={index.toString()} class={`max-sm:min-w-full max-w-[300px] max-h-[500px] flex flex-col container overflow-hidden`} style={`background-image: radial-gradient(circle, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]})`}>
-      <div class="w-full h-[475px] relative">
-        <Image src={agent.background} alt={`background-${agent.displayName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute" />
-        <Image src={agent.bustPortrait} alt={`bust-portrait-${agent.displayName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute transition" id={`bustPortrait-${index}`} />
-      </div>
-      <p id={`displayName-${index}`} class="font-extrabold text-xl uppercase leading-6 py-3 px-4 py-auto bg-white transition-colors">{agent.displayName}</p>
-    </a>
-  ))
-}
+<a href={href} id={id} class={`max-sm:min-w-full max-w-[300px] max-h-[500px] flex flex-col container overflow-hidden`} style={`background-image: radial-gradient(circle, #${color_1}, #${color_2})`}>
+  <div class="w-full h-[475px] relative">
+    <Image src={background} alt={`background-${agentName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute" />
+    <Image src={bustPortrait} alt={`bust-portrait-${agentName}`} inferSize={true} format="avif" class="w-full h-full object-cover absolute transition" id={`bustPortrait-${id}`} />
+  </div>
+  <p id={`displayName-${id}`} class="font-extrabold text-xl uppercase leading-6 py-3 px-4 py-auto bg-white transition-colors">{agentName}</p>
+</a>
 
 <style>
   p {
@@ -36,7 +41,6 @@ const agents = await getAgents();
         $img.classList.add("scale-110")
         $displayName.classList.remove("bg-white")
         $displayName.classList.add("text-white")
-
       })
       
       card.addEventListener('mouseout', () => {
