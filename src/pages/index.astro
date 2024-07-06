@@ -1,10 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+
+import { getAgents } from "../services/agents.ts";
+const agents = await getAgents();
 ---
 
 <Layout title="Valorant Agent Hub">
 	<section class="w-full flex flex-wrap justify-center gap-4 sm:gap-8 pb-10">
-		<Card />
+		{
+			agents.map((agent, index) => (
+				<Card
+					href={`agent/${agent.displayName.replace("/", "").toLowerCase()}`}
+					id={index.toString()}
+					color_1={agent.backgroundGradientColors[0]}
+					color_2={agent.backgroundGradientColors[1]}
+					background={agent.background}
+					bustPortrait={agent.bustPortrait}
+					agentName={agent.displayName}
+				/>
+			))
+		}
 	</section>
 </Layout>
