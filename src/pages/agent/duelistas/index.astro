@@ -1,0 +1,25 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Card from "../../../components/Card.astro";
+
+import { getAgents } from "../../../services/agents.ts";
+const agents = await getAgents();
+---
+
+<Layout title="Duelistas">
+	<section class="w-full grid grid-cols-1 md:grid-cols-[repeat(2,_minmax(300px,_300px))] lg:sm:grid-cols-[repeat(3,_minmax(300px,_300px))] xl:sm:grid-cols-[repeat(4,_minmax(300px,_300px))] justify-center gap-4 sm:gap-8 pb-10">
+		{
+			agents.filter((agent) => agent.role.displayName.toString() === "Duelista").map((agent, index) => (
+				<Card
+					href={`${agent.displayName.replace("/", "").toLowerCase()}`}
+					id={index.toString()}
+					color_1={agent.backgroundGradientColors[0]}
+					color_2={agent.backgroundGradientColors[1]}
+					background={agent.background}
+					bustPortrait={agent.bustPortrait}
+					agentName={agent.displayName}
+				/>
+			))
+		}
+	</section>
+</Layout>
