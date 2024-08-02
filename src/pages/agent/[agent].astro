@@ -1,28 +1,36 @@
 ---
 import "@fontsource-variable/oswald";
-import '@fontsource-variable/inter';
+import "@fontsource-variable/inter";
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import particles from "../../../public/particles.svg"
-import { getAgents } from "../../services/agents.ts"
+import particles from "../../../public/particles.svg";
+import { getAgents } from "../../services/agents.ts";
 
 export async function getStaticPaths() {
   const agents = await getAgents();
-  
   return agents.map((agent) => ({
-    params: { agent: encodeURIComponent(agent.displayName.replace('/', '').toLowerCase()) },
-    props: {
-      agent
-    },
-  }));  
+    params: { agent: encodeURIComponent(agent.displayName.replace("/", "").toLowerCase()) },
+    props: { agent }
+  }));
 }
 
 const { agent } = Astro.props;
 
-const { displayName: agentDisplayName, description: agentDescription, bustPortrait,
+const {
+  displayName: agentDisplayName,
+  description: agentDescription,
+  bustPortrait,
   role: { displayName: roleDisplayName, displayIcon: roleDisplayIcon },
-  abilities
- } = agent
+  abilities,
+} = agent;
+
+// Orden de las habilidades
+const order = ['Grenade', 'Ability1', 'Ability2', 'Ultimate'];
+
+// Filtrar y ordenar las habilidades
+let newAbilities = abilities
+  .filter((ability) => ability.slot !== "Passive")
+  .sort((a, b) => order.indexOf(a.slot) - order.indexOf(b.slot));
 
 export const prerender = true;
 ---
@@ -62,7 +70,7 @@ export const prerender = true;
       <h2 class="text-white text-2xl xl:text-4xl  text-center font-semibold my-10 tracking-tighter leading-none">HABILIDADES ESPECIALES</h2>
       <div class="w-full flex justify-center items-center gap-8 sm:gap-10 abilities">
         {
-          abilities.filter((ability) => ability.slot !== "Passive").map((ability, index) => (
+          newAbilities.map((ability, index) => (
             <a href="" id={index.toString()}><Image src={ability.displayIcon} alt={ability.slot} inferSize={true} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></a>
           ))
         }
@@ -77,9 +85,7 @@ export const prerender = true;
       ))
     }
   </section>
-
 </Layout>
-
 
 <style>
   h1,
@@ -88,8 +94,8 @@ export const prerender = true;
     font-family: "Oswald Variable", sans-serif;
   }
 
-  .description{
-    font-family: 'Inter Variable', sans-serif;
+  .description {
+    font-family: "Inter Variable", sans-serif;
   }
 
   .box::before {
@@ -107,43 +113,40 @@ export const prerender = true;
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const $abilitiesLinks = document.querySelectorAll(".abilities a")
-    const $abilitiesIcons = document.querySelectorAll(".abilities a img")
-    const $containerAbility = document.querySelectorAll(".container-ability")
-
+    const $abilitiesLinks = document.querySelectorAll(".abilities a");
+    const $abilitiesIcons = document.querySelectorAll(".abilities a img");
+    const $containerAbility = document.querySelectorAll(".container-ability");
 
     // Resalta el icono de la primera habilidad
     $abilitiesIcons.forEach((img) => {
       if (img.id === "0") {
-        img.classList.remove("opacity-30") 
+        img.classList.remove("opacity-30");
       }
-    })
+    });
 
     // Muestra la primera habilidad al cargar la página del agente
     $containerAbility.forEach((container) => {
-      (container.id === "0") ? container.classList.remove("hidden") : null
-    })
+      container.id === "0" ? container.classList.remove("hidden") : null;
+    });
 
     // Controla el evento al dar click en uno de los iconos de las habilidades
     $abilitiesLinks.forEach((link, index) => {
-
       link.addEventListener("click", (e) => {
         e.preventDefault();
 
-        $containerAbility.forEach(container => {
+        $containerAbility.forEach((container) => {
           if (container.id === index.toString()) {
-            container.classList.remove("hidden")
-            $abilitiesIcons.forEach(img => {
-              img.id === index.toString() ? img.classList.remove("opacity-30") : img.classList.add("opacity-30") 
-            })
-          }else{
-            container.classList.add("hidden")
+            container.classList.remove("hidden");
+            $abilitiesIcons.forEach((img) => {
+              img.id === index.toString()
+                ? img.classList.remove("opacity-30")
+                : img.classList.add("opacity-30");
+            });
+          } else {
+            container.classList.add("hidden");
           }
-        })
-
-      })
-
-    })
-  })
-
+        });
+      });
+    });
+  });
 </script>
