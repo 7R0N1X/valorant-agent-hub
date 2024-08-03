@@ -1,33 +1,28 @@
 ---
 import '@fontsource-variable/inter';
 import { Image } from "astro:assets";
+import icon0 from "../../public/abilities/0.png"
+import icon1 from "../../public/abilities/1.png"
+import icon2 from "../../public/abilities/2.png"
+import icon3 from "../../public/abilities/3.png"
+import icon4 from "../../public/abilities/4.png"
 import valorantLogo from "../../public/valorant-logo.svg";
 ---
 
 
 
-<header>
-  <div class="w-full sm:flex sm:flex-col justify-between items-center px-4 mb-4 sm:mb-10">
+<header class="my-8">
+  <div class="w-full h-auto flex flex-col sm:flex-row justify-between items-center gap-8">
     <div class="flex justify-between">
-      <a href="/"><Image src={valorantLogo} alt="Logo de Valorant" class="h-5 w-auto sm:h-10 my-4 sm:my-10" /></a>
-
-      <button id="menu" aria-label="menu" class="sm:hidden">
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-        </svg>
-      </button>
+      <a href="/"><Image src={valorantLogo} alt="Logo de Valorant" class="h-10 w-auto sm:h-10" /></a>
     </div>
-    
-
-    <nav id="navbar" class="hidden w-full md:block md:w-auto max-sm:mb-4">
-      <ul class="max-sm:bg-neutral-950/50 max-sm:rounded-xl flex max-sm:flex-col justify-center sm:items-center text-white [&>li>a]:font-semibold max-sm:p-4">
-        <li><a href="/" class="max-sm:block py-2 px-3 hover:bg-[#FA4453]/50 transition-colors duration-500">Todos</a></li>
-        <li><a href="/agent/controladores" class="max-sm:block py-2 px-3 hover:bg-[#FA4453]/50 transition-colors duration-500">Controladores</a></li>
-        <li><a href="/agent/duelistas" class="max-sm:block py-2 px-3 hover:bg-[#FA4453]/50 transition-colors duration-500">Duelistas</a></li>
-        <li><a href="/agent/iniciadores" class="max-sm:block py-2 px-3 hover:bg-[#FA4453]/50 transition-colors duration-500">Iniciadores</a></li>
-        <li><a href="/agent/centinelas" class="max-sm:block py-2 px-3 hover:bg-[#FA4453]/50 transition-colors duration-500">Centinelas</a></li>
-      </ul>
-    </nav>
+    <ul class="w-full sm:max-w-[300px] flex justify-between">
+      <li><a href="/"><Image src={icon0} alt="Todos los agentes" title='Todos los agentes' class='size-10'></a></li>
+      <li><a href="/agent/controladores"><Image src={icon1} alt="Controladores" title='Controladores' class='size-10'></a></li>
+      <li><a href="/agent/duelistas"><Image src={icon2} alt="Duelistas" title='Duelistas' class='size-10'></a></li>
+      <li><a href="/agent/iniciadores"><Image src={icon3} alt="Iniciadores" title='Iniciadores' class='size-10'></a></li>
+      <li><a href="/agent/centinelas"><Image src={icon4} alt="Centinelas" title='Centinelas' class='size-10'></a></li>
+    </ul>    
   </div>
 </header>
 
