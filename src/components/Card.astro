@@ -16,8 +16,8 @@ const { href, id, color_1, color_2, background, bustPortrait, agentName } =
   Astro.props;
 ---
 
-<a href={href} id={id} class={`w-[180px] h-auto sm:w-[340px] flex flex-col overflow-hidden container`} style={`background-image: radial-gradient(circle, #${color_1}, #${color_2})`} >
-  <div class="relative w-full h-[240px] sm:h-[453px]">
+<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container`} style={`background-image: radial-gradient(circle, #${color_1}, #${color_2})`} >
+  <div class="relative w-full h-full">
     <Image
       src={background}
       alt={`background-${agentName}`}
@@ -44,6 +44,30 @@ const { href, id, color_1, color_2, background, bustPortrait, agentName } =
 <style>
   p {
     font-family: "Oswald Variable", sans-serif;
+  }
+
+  @media (min-width: 321px) {
+    a{
+      max-width: 375px;
+    }
+  }
+
+  @media (min-width: 425px) {
+    a{
+      max-width: 188px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    a{
+      max-width: 234px;
+    }
+  }
+
+  @media (min-width: 1140px) {
+    a{
+      max-width: 268px;
+    }
   }
 </style>
 
