@@ -1,40 +1,45 @@
-### Screenshot
+# Valorant Agent Hub
+![Screenshot](https://github.com/user-attachments/assets/5db2affa-fc49-4d25-84ad-7ef5ac234676)
 
-![Screenshot](https://github.com/7R0N1X/valorant-agent-hub/assets/92642223/9c802907-0543-4e5a-8fbb-093bdbf0b2c0)
+## Descripción
 
-### Prerequisitos
+Este proyecto es un Visor de Agentes de Valorant construido con Astro, Tailwind CSS y JavaScript. Obtiene datos de la API de Valorant para mostrar información sobre los agentes y sus habilidades. La aplicación ofrece una interfaz interactiva y responsive para explorar y conocer más sobre cada agente del juego.
 
-- NVM (recomendado para asegurar versión de Node) ver [documentación oficial](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+## Características
 
-  ```sh
-  nvm use
-  # o
-  nvm use <version>
-  ```
+- Explora todos los agentes de Valorant
+- Visualiza información detallada sobre las habilidades de cada agente
 
-### Instalación
+## Tecnologías Utilizadas
 
-1. Clona el repositorio
+- **Astro**: Framework para construir sitios web rápidos y modernos
+- **Tailwind CSS**: Framework CSS de utilidades para estilizar
+- **JavaScript**: Para obtener datos de la API de Valorant y manejar la interactividad
+- **Vercel**: Plataforma de despliegue para el proyecto
 
+## Instalación
+
+Para comenzar con Valorant Agent Hub:
+
+1. Clona el repositorio:
    ```sh
-   git clone https://github.com/7R0N1X/valorant-agent-hub.git
+   https://github.com/7R0N1X/valorant-agent-hub.git
+   ```
+2. Navega al directorio del proyecto:
+   ```sh
+   cd valorant-agents-viewer
+   ```
+3. Instala las dependencias:
+   ```sh
+   npm install
+   ```
+4. Inicia el servidor de desarrollo:
+   ```sh
+   npm run dev
    ```
 
-2. Instala los paquetes de NPM
+## Contribuciones
+¡Las contribuciones son bienvenidas! Si tienes sugerencias o mejoras, por favor, haz un fork del repositorio y envía un pull request. También puedes abrir un issue para reportar errores o solicitar nuevas características.
 
-   ```sh
-   pnpm install
-   ```
-
-3. Ejecuta el proyecto
-
-   ```sh
-   pnpm run dev
-   ```
-
-### Stack
-
-![Astro](https://img.shields.io/badge/-Astro-333333?style=flat&logo=Astro)
-![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-333333?style=flat&logo=tailwind-css&logoColor=38B2AC)
-![JavaScript](https://img.shields.io/badge/-JavaScript-333333?style=flat&logo=javascript)
-![TypeScript](https://img.shields.io/badge/-TypeScript-333333?style=flat&logo=typescript&logoColor=007ACC)
+## License
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](https://github.com/7R0N1X/valorant-agent-hub/blob/main/LICENSE) para más detalles.
