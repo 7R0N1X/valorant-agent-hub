@@ -7,7 +7,7 @@ const agents = await getAgents();
 ---
 
 <Layout title="Iniciadores">
-	<section class="w-full grid grid-cols-1 md:grid-cols-[repeat(2,_minmax(300px,_300px))] lg:sm:grid-cols-[repeat(3,_minmax(300px,_300px))] xl:sm:grid-cols-[repeat(4,_minmax(300px,_300px))] justify-center gap-4 sm:gap-8 pb-10">
+	<section class="grid grid-cols-[repeat(2,_minmax(180px,_180px))] md:grid-cols-[repeat(2,_minmax(340px,_340px))] lg:sm:grid-cols-[repeat(3,_minmax(340px,_340px))] xl:sm:grid-cols-[repeat(4,_minmax(340px,_340px))] justify-center gap-4 sm:gap-8 py-8">
 		{
 			agents.filter((agent) => agent.role.displayName.toString() === "Iniciador").map((agent, index) => (
 				<Card

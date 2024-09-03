@@ -1,6 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import Navbar from "../components/Navbar.astro";
+import Navbar from "../sections/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -21,7 +21,7 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="max-w-[1330px] mx-auto bg-[#0F1923] px-4">
+	<body class="bg-[#0F1923]">
 		<Navbar />
 		<main>
 			<slot />
