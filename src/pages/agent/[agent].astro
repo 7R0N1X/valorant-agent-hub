@@ -2,8 +2,6 @@
 import "@fontsource-variable/oswald";
 import "@fontsource-variable/inter";
 import Layout from "../../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import particles from "../../../public/particles.svg";
 import { getAgents } from "../../services/agents.ts";
 
 export async function getStaticPaths() {
@@ -31,8 +29,8 @@ export const prerender = true;
   <section class="max-w-[1436px] h-auto mx-auto xl:relative px-4 py-8">
 
     <div class="relative w-full h-72 xl:h-[700px]">
-      <Image src={particles} alt="" class="absolute w-full h-full object-cover" />
-      <Image src={bustPortrait} alt="" inferSize={true} class="absolute w-auto h-full left-0 right-0 mx-auto xl:mr-10" />
+      <img src="../../../public/particles.svg" alt="" class="absolute w-full h-full object-cover" />
+      <img src={bustPortrait} alt="" class="absolute w-auto h-full left-0 right-0 mx-auto xl:mr-10" />
     </div>
 
     <div class="text-white xl:absolute xl:top-0 xl:bottom-0 xl:flex xl:flex-col xl:justify-center">
@@ -42,7 +40,7 @@ export const prerender = true;
       <div class="size-[130px] border border-[#FA4453] relative mt-7">
         <div class="box">
           <div class="absolute w-full h-full flex flex-col justify-center items-center gap-4">
-            <Image src={roleDisplayIcon} alt="" inferSize={true} class="size-8" />
+            <img src={roleDisplayIcon} alt="" class="size-8" />
             <div class="text-center">
               <p class="text-[10px] mb-1">ROLE</p>
               <p class="text-[10px] uppercase text-[#FA4453]">{roleDisplayName}</p>
@@ -63,7 +61,7 @@ export const prerender = true;
       <div class="w-full flex justify-center items-center gap-8 sm:gap-10 abilities">
         {
           abilities.filter((ability) => ability.slot !== "Passive").map((ability, index) => (
-            <a href="" id={index.toString()}><Image src={ability.displayIcon} alt={ability.slot} inferSize={true} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></a>
+            <a href="" id={index.toString()}><img src={ability.displayIcon} alt={ability.slot} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></a>
           ))
         }
       </div>

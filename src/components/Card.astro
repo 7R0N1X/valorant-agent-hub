@@ -1,6 +1,5 @@
 ---
 import "@fontsource-variable/oswald";
-import { Image } from "astro:assets";
 
 interface Props {
   href: string;
@@ -16,24 +15,20 @@ const { href, id, color_1, color_2, background, bustPortrait, agentName } =
   Astro.props;
 ---
 
-<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container`} style={`background-image: radial-gradient(circle, #${color_1}, #${color_2})`} >
+<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container`} style={`background-img: radial-gradient(circle, #${color_1}, #${color_2})`} >
   <div class="relative w-full h-full">
-    <Image
+    <img
       src={background}
       alt={`background-${agentName}`}
       width={118}
       height={210}
-      inferSize={true}
-      format="avif"
       class="absolute inset-0 w-full h-full object-cover p-4"
     />
-    <Image
+    <img
       src={bustPortrait}
       alt={`bust-portrait-${agentName}`}
       width={118}
       height={210}
-      inferSize={true}
-      format="avif"
       class="absolute inset-0 w-full h-full object-cover transition"
       id={`bustPortrait-${id}`}
     />
