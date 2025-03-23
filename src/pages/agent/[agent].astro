@@ -29,8 +29,8 @@ export const prerender = true;
   <section class="max-w-[1436px] h-auto mx-auto xl:relative px-4 py-8">
 
     <div class="relative w-full h-72 xl:h-[700px]">
-      <img src="../../../public/particles.svg" alt="" class="absolute w-full h-full object-cover" />
-      <img src={bustPortrait} alt="" class="absolute w-auto h-full left-0 right-0 mx-auto xl:mr-10" />
+      <img src="/particles.svg" alt="" class="absolute w-full h-full object-cover" />
+      <img src={bustPortrait} alt="" class="absolute w-auto h-full left-0 right-0 mx-auto xl:mr-10" transition:name={`bustPortrait-${agentDisplayName}`} />
     </div>
 
     <div class="text-white xl:absolute xl:top-0 xl:bottom-0 xl:flex xl:flex-col xl:justify-center">

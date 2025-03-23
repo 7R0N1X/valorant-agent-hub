@@ -11,11 +11,10 @@ interface Props {
   agentName: string;
 }
 
-const { href, id, color_1, color_2, background, bustPortrait, agentName } =
-  Astro.props;
+const { href, id, color_1, color_2, background, bustPortrait, agentName } = Astro.props;
 ---
 
-<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container`} style={`background-img: radial-gradient(circle, #${color_1}, #${color_2})`} >
+<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container`} style={`background-image: radial-gradient(circle, #${color_1}, #${color_2})`} >
   <div class="relative w-full h-full">
     <img
       src={background}
@@ -31,6 +30,8 @@ const { href, id, color_1, color_2, background, bustPortrait, agentName } =
       height={210}
       class="absolute inset-0 w-full h-full object-cover transition"
       id={`bustPortrait-${id}`}
+      transition:name={`bustPortrait-${agentName}`}
+      
     />
   </div>
   <div class="w-full h-auto">
