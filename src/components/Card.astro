@@ -2,40 +2,39 @@
 import "@fontsource-variable/oswald";
 
 interface Props {
-  href: string;
   id: string;
-  color_1: string;
-  color_2: string;
+  href: string;
+  primary_color: string;
+  secondary_color: string;
   background: string;
   bustPortrait: string;
   agentName: string;
 }
 
-const { href, id, color_1, color_2, background, bustPortrait, agentName } = Astro.props;
+const { id, href, primary_color, secondary_color, background, bustPortrait, agentName } = Astro.props;
 ---
 
-<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container`} style={`background-image: radial-gradient(circle, #${color_1}, #${color_2})`} >
+<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} >
   <div class="relative w-full h-full">
     <img
       src={background}
       alt={`background-${agentName}`}
-      width={118}
-      height={210}
+      loading="lazy"
+      decoding="async"
       class="absolute inset-0 w-full h-full object-cover p-4"
     />
     <img
+      id={`bustPortrait-${id}`}
       src={bustPortrait}
       alt={`bust-portrait-${agentName}`}
-      width={118}
-      height={210}
-      class="absolute inset-0 w-full h-full object-cover transition"
-      id={`bustPortrait-${id}`}
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110 duration-300"
       transition:name={`bustPortrait-${agentName}`}
-      
     />
   </div>
   <div class="w-full h-auto">
-    <p id={`displayName-${id}`} class="font-extrabold uppercase leading-6 py-2 px-4 bg-white transition-colors">
+    <p id={`displayName-${id}`} class="font-extrabold uppercase leading-6 py-2 px-4 bg-white group-hover:bg-transparent transition-colors duration-300 group-hover:text-white">
       {agentName}
     </p>
   </div>
@@ -45,45 +44,4 @@ const { href, id, color_1, color_2, background, bustPortrait, agentName } = Astr
   p {
     font-family: "Oswald Variable", sans-serif;
   }
-
-  @media (min-width: 425px) {
-    a{
-      max-width: 188px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    a{
-      max-width: 234px;
-    }
-  }
-
-  @media (min-width: 1140px) {
-    a{
-      max-width: 339px;
-    }
-  }
 </style>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const $container = document.querySelectorAll(".container");
-
-    $container.forEach((card, index) => {
-      const $img = document.getElementById(`bustPortrait-${index}`);
-      const $displayName = document.getElementById(`displayName-${index}`);
-
-      card.addEventListener("mouseover", () => {
-        $img.classList.add("scale-110");
-        $displayName.classList.remove("bg-white");
-        $displayName.classList.add("text-white");
-      });
-
-      card.addEventListener("mouseout", () => {
-        $img.classList.remove("scale-110");
-        $displayName.classList.add("bg-white");
-        $displayName.classList.remove("text-white");
-      });
-    });
-  });
-</script>
