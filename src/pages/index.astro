@@ -1,26 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import AgentsLayout from "@layouts/AgentsLayout.astro";
+import { getAgents } from "@services/agents";
 
-import { getAgents } from "../services/agents.ts";
 const agents = await getAgents();
 ---
 
-<Layout title="Valorant Agent Hub">
-	<section class="max-w-[1436px] mx-auto flex flex-wrap center items-center gap-4 p-4">
-		<h1 class="aria-readonly hidden">Agentes</h1>
-		{
-			agents.map((agent, index) => (
-				<Card
-					href={`agent/${agent.displayName.replace("/", "").toLowerCase()}`}
-					id={index.toString()}
-					color_1={agent.backgroundGradientColors[0]}
-					color_2={agent.backgroundGradientColors[1]}
-					background={agent.background}
-					bustPortrait={agent.bustPortrait}
-					agentName={agent.displayName}
-				/>
-			))
-		}
-	</section>
+<Layout title="Agentes de Valorant">
+  <AgentsLayout titleSection="Agentes" agents={agents} />
 </Layout>
