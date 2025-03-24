@@ -1,0 +1,30 @@
+---
+import Card from "@components/Card.astro";
+import type { Datum } from "@types/valorant";
+
+interface Props {
+  titleSection: string;
+  agents: Datum[];
+}
+
+const { titleSection, agents } = Astro.props;
+---
+
+<section>
+  <h1 class="aria-readonly hidden">{titleSection}</h1>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    {
+      agents.map((agent, index) => (
+        <Card
+          id={index.toString()}
+          href={`agent/${agent.displayName.replace("/", "").toLowerCase()}`}
+          primary_color={agent.backgroundGradientColors[0]}
+          secondary_color={agent.backgroundGradientColors[1]}
+          background={agent.background}
+          bustPortrait={agent.bustPortrait}
+          agentName={agent.displayName}
+        />
+      ))
+    }
+  </div>
+</section>

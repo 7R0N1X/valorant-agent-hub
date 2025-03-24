@@ -1,0 +1,12 @@
+---
+import Layout from "@layouts/Layout.astro";
+import AgentsLayout from "@layouts/AgentsLayout.astro";
+import { getAgents } from "@services/agents";
+
+const agents = await getAgents();
+const controllers = agents.filter(agent => agent.role.displayName.toString() === "Controlador")
+---
+
+<Layout title="Controladores">
+  <AgentsLayout titleSection="Controladores" agents={controllers} />
+</Layout>

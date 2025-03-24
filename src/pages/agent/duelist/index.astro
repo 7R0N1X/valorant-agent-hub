@@ -1,0 +1,12 @@
+---
+import Layout from "@layouts/Layout.astro";
+import AgentsLayout from "@layouts/AgentsLayout.astro";
+import { getAgents } from "@services/agents";
+
+const agents = await getAgents();
+const duelists = agents.filter(agent => agent.role.displayName.toString() === "Duelista")
+---
+
+<Layout title="Duelistas">
+  <AgentsLayout titleSection="Duelistas" agents={duelists} />
+</Layout>

@@ -1,8 +1,6 @@
 ---
-import "@fontsource-variable/oswald";
-import "@fontsource-variable/inter";
-import Layout from "../../layouts/Layout.astro";
-import { getAgents } from "../../services/agents.ts";
+import Layout from "@layouts/Layout.astro"
+import { getAgents } from "@services/agents";
 
 export async function getStaticPaths() {
   const agents = await getAgents();
