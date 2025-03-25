@@ -12,4 +12,14 @@ export default defineConfig({
   },
   adapter: vercel(),
   integrations: [tailwind()],
+  vite: {
+    build: {
+      assetsInlineLimit: 0,
+    },
+    server: {
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable'
+      }
+    }
+  }
 });
