@@ -12,7 +12,7 @@ interface Props {
 const { id, href, primary_color, secondary_color, background, bustPortrait, agentName } = Astro.props;
 ---
 
-<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} data-astro-prefetch >
+<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} data-astro-prefetch data-aos="fade-up" >
   <div class="relative w-full h-full">
     <img
       src={background}
