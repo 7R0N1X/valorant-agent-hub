@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   id: string;
   href: string;
@@ -14,19 +16,21 @@ const { id, href, primary_color, secondary_color, background, bustPortrait, agen
 
 <a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} data-astro-prefetch data-aos="fade-up" >
   <div class="relative w-full h-full">
-    <img
+    <Image
       src={background}
       alt={`background-${agentName}`}
-      loading="lazy"
-      decoding="async"
+      width="200"
+      height="150"
+      format='webp'
       class="absolute inset-0 w-full h-full object-cover p-4"
     />
-    <img
+    <Image
       id={`bustPortrait-${id}`}
       src={bustPortrait}
       alt={`bust-portrait-${agentName}`}
-      loading="lazy"
-      decoding="async"
+      width="200"
+      height="150"
+      format='webp'
       class="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-110 duration-300"
       transition:name={`bustPortrait-${agentName}`}
     />
