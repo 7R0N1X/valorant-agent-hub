@@ -14,11 +14,11 @@ interface Props {
 const { id, href, primary_color, secondary_color, background, bustPortrait, agentName } = Astro.props;
 ---
 
-<a href={href} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} data-astro-prefetch data-aos="fade-up" >
+<a href={href} title={`Ver más sobre ${agentName}`} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} data-astro-prefetch data-aos="fade-up" >
   <div class="relative w-full h-full">
     <Image
       src={background}
-      alt={`background-${agentName}`}
+      alt={`Fondo de ${agentName}`}
       width="200"
       height="150"
       format='webp'
@@ -27,7 +27,7 @@ const { id, href, primary_color, secondary_color, background, bustPortrait, agen
     <Image
       id={`bustPortrait-${id}`}
       src={bustPortrait}
-      alt={`bust-portrait-${agentName}`}
+      alt={`Imágen de ${agentName}`}
       width="200"
       height="150"
       format='webp'

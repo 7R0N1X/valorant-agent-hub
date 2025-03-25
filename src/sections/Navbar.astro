@@ -2,17 +2,17 @@
 import MenuIcon from "src/assets/MenuIcon.astro";
 
 const NAV_ITEMS = [
-  { url: "/", title: "Todos" },
-  { icon: "/roles/duelist.svg", url: "/agent/duelist", title: "Dualista" },
-  { icon: "/roles/controller.svg", url: "/agent/controller", title: "Controlador" },
-  { icon: "/roles/initiator.svg", url: "/agent/initiator", title: "Iniciador" },
-  { icon: "/roles/sentinel.svg", url: "/agent/sentinel", title: "Centinela" },
+  { url: "/", role: "Todos", title: "Ver todos los agentes" },
+  { icon: "/roles/duelist.svg", url: "/agent/duelist", role: "Dualista", title:"Ver agentes duelistas" },
+  { icon: "/roles/controller.svg", url: "/agent/controller", role: "Controlador", title:"Ver agentes controladores" },
+  { icon: "/roles/initiator.svg", url: "/agent/initiator", role: "Iniciador", title:"Ver agentes iniciadores" },
+  { icon: "/roles/sentinel.svg", url: "/agent/sentinel", role: "Centinela", title:"Ver agentes centinelas" },
 ];
 ---
 
 <header class="w-full bg-[#0A1017] border-b border-gray-800 navbar" transition:name="navbar">
   <section class="w-full max-w-[1436px] mx-auto flex items-center justify-between p-4">
-    <a href="/">
+    <a href="/" title="Ir al inicio">
       <img src="/logos/valorant.svg" alt="Logo de Valorant" class="w-full h-5 lg:h-6"/>
     </a>
 
@@ -25,9 +25,9 @@ const NAV_ITEMS = [
         {
           NAV_ITEMS.map((navItem) => (
             <li>
-              <a href={navItem.url} class="text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-2 py-2 px-4 rounded-lg navbar__link">
-                {navItem.icon && <img src={navItem.icon} class="size-4" />}
-                {navItem.title.toUpperCase()}
+              <a href={navItem.url} class="text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-2 py-2 px-4 rounded-lg navbar__link" title={navItem.title}>
+                {navItem.icon && <img src={navItem.icon} alt={`Icono del rol ${navItem.role.toLowerCase()}`} class="size-4" />}
+                {navItem.role.toUpperCase()}
               </a>
             </li>
           ))
@@ -41,8 +41,8 @@ const NAV_ITEMS = [
       {
         NAV_ITEMS.map((navItem) => (
           <li class="w-full">
-            <a href={navItem.url} class="text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-2 py-2 px-4 rounded-lg navbar__link">
-              {navItem.icon && <img src={navItem.icon} class="size-4" />}
+            <a href={navItem.url} class="text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-2 py-2 px-4 rounded-lg navbar__link" title={navItem.title}>
+              {navItem.icon && <img src={navItem.icon} alt={`Icono del rol ${navItem.role.toLowerCase()}`} class="size-4" />}
               {navItem.title.toUpperCase()}
             </a>
           </li>
