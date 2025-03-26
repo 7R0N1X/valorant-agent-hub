@@ -43,7 +43,7 @@ const NAV_ITEMS = [
           <li class="w-full">
             <a href={navItem.url} class="text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-2 py-2 px-4 rounded-lg navbar__link" title={navItem.title}>
               {navItem.icon && <img src={navItem.icon} alt={`Icono del rol ${navItem.role.toLowerCase()}`} class="size-4" />}
-              {navItem.title.toUpperCase()}
+              {navItem.role.toUpperCase()}
             </a>
           </li>
         ))
