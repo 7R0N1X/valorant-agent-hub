@@ -62,7 +62,7 @@ export const prerender = true;
       <div class="w-full flex justify-center items-center gap-8 sm:gap-10 abilities">
         {
           abilities.filter((ability) => ability.slot !== "Passive").map((ability, index) => (
-            <button title={ability.slot} id={index.toString()}><img src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${ability.displayIcon}`} alt={ability.slot} title={ability.slot} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></button>
+          <button title={ability.slot} id={index.toString()}><Image src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${ability.displayIcon}`} alt={ability.slot} title={ability.slot} width={48} height={48} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></button>
           ))
         }
       </div>
