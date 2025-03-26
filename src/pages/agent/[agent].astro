@@ -3,6 +3,8 @@ import Layout from "@layouts/Layout.astro"
 import { Image } from 'astro:assets';
 import { getAgents } from "@services/agents";
 
+const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+
 export async function getStaticPaths() {
   const agents = await getAgents();
   return agents.map((agent) => ({
@@ -29,7 +31,7 @@ export const prerender = true;
 
     <div class="relative w-full h-72 xl:h-[700px]">
       <Image src="/background/particles.svg" alt="Fondo de particulas" width={200} height={150} class="absolute w-full h-full object-cover" />
-      <Image src={bustPortrait} alt={`Imagen del agente ${agentDisplayName}`} width={200} height={150} class="absolute w-auto h-full left-0 right-0 mx-auto xl:mr-10" transition:name={`bustPortrait-${agentDisplayName}`} />
+      <Image  src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${bustPortrait}`} alt={`Imagen del agente ${agentDisplayName}`} width={200} height={150} class="absolute w-auto h-full left-0 right-0 mx-auto xl:mr-10" transition:name={`bustPortrait-${agentDisplayName}`} />
     </div>
 
     <div class="text-white xl:absolute xl:top-0 xl:bottom-0 xl:flex xl:flex-col xl:justify-center">
@@ -39,7 +41,7 @@ export const prerender = true;
       <div class="size-[130px] border border-[#FA4453] relative mt-7">
         <div class="box">
           <div class="absolute w-full h-full flex flex-col justify-center items-center gap-4">
-            <Image src={roleDisplayIcon} width={32} height={32} alt={`Icono del rol ${roleDisplayName}`} />
+            <Image src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${roleDisplayIcon}`} width={32} height={32} alt={`Icono del rol ${roleDisplayName}`} />
             <div class="text-center">
               <p class="text-[10px] mb-1">ROLE</p>
               <p class="text-[10px] uppercase text-[#FA4453]">{roleDisplayName}</p>
@@ -60,7 +62,7 @@ export const prerender = true;
       <div class="w-full flex justify-center items-center gap-8 sm:gap-10 abilities">
         {
           abilities.filter((ability) => ability.slot !== "Passive").map((ability, index) => (
-            <button title={ability.slot} id={index.toString()}><img src={ability.displayIcon} alt={ability.slot} title={ability.slot} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></button>
+            <button title={ability.slot} id={index.toString()}><img src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${ability.displayIcon}`} alt={ability.slot} title={ability.slot} class="size-11 xl:size-12 opacity-30 hover:scale-110 transition" id={index.toString()} /></button>
           ))
         }
       </div>
