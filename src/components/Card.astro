@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 
@@ -18,14 +18,14 @@ const { id, href, primary_color, secondary_color, background, bustPortrait, agen
 
 <a href={href} title={`Ver más sobre ${agentName}`} id={id} class={`aspect-[3/4] flex flex-col overflow-hidden container group`} style={`background-image: radial-gradient(circle, #${primary_color}, #${secondary_color})`} data-astro-prefetch data-aos="fade-up" >
   <div class="relative w-full h-full">
-    <Image
+    <Picture
       src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${background}`}
       alt={`Fondo de ${agentName}`}
       width="200"
       height="150"
       class="absolute inset-0 w-full h-full object-cover p-4"
     />
-    <Image
+    <Picture
       id={`bustPortrait-${id}`}
       src={`https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/f_webp,q_auto:low/${bustPortrait}`}
       alt={`Imágen de ${agentName}`}
